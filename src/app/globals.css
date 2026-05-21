@@ -1,0 +1,98 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 220 14% 96%;
+    --foreground: 0 0% 0%;
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 0%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 0%;
+    --primary: 199 98% 39%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 220 14% 96%;
+    --secondary-foreground: 0 0% 0%;
+    --muted: 220 14% 96%;
+    --muted-foreground: 0 0% 43%;
+    --accent: 199 95% 94%;
+    --accent-foreground: 199 98% 39%;
+    --destructive: 0 100% 68%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 0 0% 92%;
+    --input: 0 0% 92%;
+    --ring: 199 98% 39%;
+    --radius: 0.75rem;
+
+    --token-black: #000000;
+    --token-white: #ffffff;
+    --token-blue: #0284C7;
+    --token-blue-light: #38BDF8;
+    --token-blue-bg: #E0F2FE;
+    --token-muted: #6d6d6d;
+    --token-bg: #f5f6f8;
+  }
+
+  * {
+    @apply border-border;
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-geist-sans), system-ui, sans-serif;
+  }
+}
+
+@layer utilities {
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .hero-gradient {
+    background:
+      radial-gradient(ellipse 80% 60% at 50% -10%, rgba(56, 189, 248, 0.40) 0%, transparent 55%),
+      radial-gradient(ellipse 60% 50% at 80% 20%, rgba(2, 132, 199, 0.08) 0%, transparent 50%),
+      linear-gradient(180deg, #ffffff 0%, #f5f6f8 100%);
+  }
+
+  .integrations-gradient {
+    background: linear-gradient(135deg, #0284C7 0%, #0EA5E9 50%, #38BDF8 100%);
+  }
+
+  .cta-gradient {
+    background: linear-gradient(180deg, #0a0a0a 0%, #111827 100%);
+  }
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--token-blue);
+  border-radius: 3px;
+}
