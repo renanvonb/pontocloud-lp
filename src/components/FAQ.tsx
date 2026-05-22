@@ -23,27 +23,27 @@ const faqs = [
     a: 'O gestor acompanha o resumo mensal por colaborador, acessa o ponto diário detalhado e aplica ajustes como mover marcações, alterar turno, ajustar banco de horas, registrar folgas e tratar solicitações.',
   },
   {
-    q: 'Quais relatórios fiscais estão previstos na plataforma?',
-    a: 'A landing comunica os relatórios fiscais oficiais do escopo atual: AFD, AEJ, espelho de ponto, comprovantes de marcação e atestado REP-P.',
+    q: 'Quais relatórios fiscais estão disponíveis?',
+    a: 'AFD, AEJ, espelho de ponto, comprovantes de marcação e atestado REP-P para apoiar auditorias e conferências.',
   },
   {
-    q: 'O teste grátis depende de falar com um consultor?',
-    a: 'Nesta versão da página, o formulário coleta os dados para qualificar o lead e iniciar o contato. Depois do envio, a equipe pode orientar o próximo passo do teste.',
+    q: 'Como funciona o programa de revendas?',
+    a: 'Revendedores PontoCloud recebem comissões recorrentes por cliente ativo, suporte dedicado e material de apoio comercial. Basta preencher o formulário de interesse e nossa equipe entrará em contato.',
   },
 ]
 
 export default function FAQ() {
   return (
-    <section id="faq" className="py-24 bg-card">
-      <div className="max-w-6xl mx-auto px-6">
+    <section id="faq" className="py-36 bg-white">
+      <div className="max-w-7xl mx-auto px-6">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-20">
           <div className="reveal">
-            <h2 className="text-3xl md:text-5xl font-bold tracking-[-0.02em] mb-4">
+            <h2 className="text-3xl md:text-5xl font-medium tracking-[-0.03em] mb-4 font-[family-name:var(--font-geist-sans)]">
               Dúvidas
               <br />
               frequentes
             </h2>
-            <p className="text-muted-foreground text-lg">
+            <p className="text-muted-foreground text-lg leading-relaxed font-[family-name:var(--font-geist-sans)]">
               Respostas diretas sobre o uso do PontoCloud por gestores, DP e colaboradores.
             </p>
           </div>
@@ -51,8 +51,12 @@ export default function FAQ() {
           <Accordion type="single" collapsible defaultValue="item-0" className="reveal space-y-3">
             {faqs.map((faq, i) => (
               <AccordionItem key={faq.q} value={`item-${i}`}>
-                <AccordionTrigger>{faq.q}</AccordionTrigger>
-                <AccordionContent>{faq.a}</AccordionContent>
+                <AccordionTrigger className="font-[family-name:var(--font-geist-sans)] font-medium tracking-[-0.01em]">
+                  {faq.q}
+                </AccordionTrigger>
+                <AccordionContent className="font-[family-name:var(--font-geist-sans)] text-muted-foreground leading-relaxed">
+                  {faq.a}
+                </AccordionContent>
               </AccordionItem>
             ))}
           </Accordion>

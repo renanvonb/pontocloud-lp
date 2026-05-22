@@ -3,6 +3,7 @@
 import { useScrollReveal } from '@/components/useScrollReveal'
 import Navbar from '@/components/Navbar'
 import Hero from '@/components/Hero'
+import Clients from '@/components/Clients'
 import Problem from '@/components/Problem'
 import ValueProposition from '@/components/ValueProposition'
 import Features from '@/components/Features'
@@ -19,6 +20,7 @@ export default function Home() {
     <main className="bg-background">
       <Navbar />
       <Hero />
+      <Clients />
       <Problem />
       <ValueProposition />
       <Features />

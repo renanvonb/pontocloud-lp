@@ -6,79 +6,80 @@ import {
   Fingerprint,
   Smartphone,
 } from 'lucide-react'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 
 const features = [
   {
     icon: BarChart3,
-    title: 'Dashboard em tempo real',
+    title: 'Dashboard\nem tempo real',
     description:
-      'Acompanhe registros, ausências, atrasos, horas extras, banco de horas e solicitações abertas em uma visão central.',
+      'Acompanhe registros, ausências, atrasos, horas extras e solicitações abertas em uma visão central.',
   },
   {
     icon: Fingerprint,
-    title: 'Múltiplos métodos de registro',
+    title: 'Múltiplos métodos\nde registro',
     description:
-      'Defina por colaborador os métodos permitidos na web e no app, incluindo reconhecimento facial, biometria, PIN, QR Code, código de barras e foto.',
+      'Facial, biometria, PIN, QR Code, código de barras e foto — defina por colaborador os métodos permitidos.',
   },
   {
     icon: CalendarClock,
-    title: 'Apuração com ferramentas de ajuste',
+    title: 'Apuração com\nferramentas de ajuste',
     description:
-      'Trate o ponto diário e o resumo mensal com ações como mover marcações, alterar turno, ajustar banco de horas, registrar folgas e aplicar solicitações.',
+      'Mova marcações, altere turnos, ajuste banco de horas, registre folgas e aplique solicitações com rastreabilidade.',
   },
   {
     icon: Smartphone,
-    title: 'App completo para o colaborador',
+    title: 'App completo\npara o colaborador',
     description:
-      'Dê autonomia para registrar ponto, criar solicitações, consultar histórico, baixar comprovantes e acompanhar ocorrências.',
+      'Registro, solicitações, histórico, comprovantes e ocorrências em uma experiência rápida para o dia a dia.',
   },
   {
     icon: FileText,
-    title: 'Relatórios fiscais oficiais',
+    title: 'Relatórios\nfiscais oficiais',
     description:
-      'Gere AFD, AEJ, espelho de ponto, comprovantes de marcação e atestado REP-P quando precisar apoiar auditorias e conferências.',
+      'AFD, AEJ, espelho de ponto, comprovantes e atestado REP-P prontos para auditorias e conferências.',
   },
   {
     icon: Building2,
-    title: 'Gestão de múltiplas unidades',
+    title: 'Gestão de\nmúltiplas unidades',
     description:
-      'Organize colaboradores por empresas, unidades, departamentos, cargos, centros de custo, feriados e jornadas de trabalho.',
+      'Organize por empresas, unidades, departamentos, cargos, centros de custo e jornadas de trabalho.',
   },
 ]
 
 export default function Features() {
   return (
-    <section id="features" className="relative py-24 bg-background overflow-hidden">
-      <div className="absolute top-0 left-0 right-0 h-64 bg-gradient-to-b from-white via-white/80 to-transparent pointer-events-none z-10" />
-      <div className="max-w-6xl mx-auto px-6 relative z-20">
-        <div className="text-center mb-16 reveal">
-          <h2 className="text-3xl md:text-5xl font-bold tracking-[-0.02em] mb-4">
-            Funcionalidades para registrar, tratar e fechar o ponto.
+    <section id="features" className="py-36 bg-background">
+      <div className="max-w-7xl mx-auto px-6">
+        <div className="max-w-2xl mx-auto text-center mb-[64px] reveal">
+          <h2 className="text-3xl md:text-5xl font-medium tracking-[-0.03em] mb-6 font-[family-name:var(--font-geist-sans)]">
+            Tudo que você precisa para registrar, tratar e fechar o ponto
           </h2>
-          <p className="text-muted-foreground text-lg max-w-xl mx-auto">
+          <p className="text-muted-foreground text-lg leading-relaxed font-[family-name:var(--font-geist-sans)]">
             O essencial para PMEs que precisam de profundidade funcional sem abrir mão de uma operação simples.
           </p>
         </div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {features.map(({ icon: Icon, title, description }) => (
-            <Card
+            <div
               key={title}
-              className="reveal hover:shadow-card-hover transition-shadow duration-300 border-border"
+              className="reveal flex flex-col items-center text-center rounded-2xl bg-white p-8 min-h-[300px]"
             >
-              <CardHeader>
-                <div className="w-10 h-10 rounded-lg bg-accent text-primary flex items-center justify-center mb-3">
-                  <Icon size={20} aria-hidden="true" />
-                </div>
-                <CardTitle className="text-xl">{title}</CardTitle>
-              </CardHeader>
-              <CardContent className="pt-0">
-                <CardDescription className="text-[15px] leading-relaxed">
+              <div className="w-12 h-12 rounded-xl bg-[#f5f6f8] text-primary flex items-center justify-center">
+                <Icon size={22} aria-hidden="true" />
+              </div>
+
+              <div className="flex-1" />
+
+              <div className="flex flex-col items-center gap-3">
+                <h3 className="text-xl font-medium tracking-[-0.02em] whitespace-pre-line font-[family-name:var(--font-geist-sans)]">
+                  {title}
+                </h3>
+                <p className="text-sm text-muted-foreground leading-relaxed font-[family-name:var(--font-geist-sans)]">
                   {description}
-                </CardDescription>
-              </CardContent>
-            </Card>
+                </p>
+              </div>
+            </div>
           ))}
         </div>
       </div>

@@ -15,9 +15,9 @@ import {
 import { cn } from '@/lib/utils'
 
 const links = [
-  { label: 'Funcionalidades', href: '#features' },
-  { label: 'App', href: '#app' },
-  { label: 'Perfis', href: '#perfis' },
+  { label: 'Recursos', href: '#features' },
+  { label: 'Soluções', href: '#solucoes' },
+  { label: 'Planos', href: '#precos' },
   { label: 'Dúvidas', href: '#faq' },
 ]
 
@@ -37,22 +37,24 @@ export default function Navbar() {
   return (
     <header
       className={cn(
-        'fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-out',
-        scrolled ? 'bg-white/80 shadow-sm backdrop-blur-md' : 'bg-transparent',
+        'fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-out pt-2 pb-2',
+        scrolled ? 'bg-white/60 shadow-sm backdrop-blur-md' : 'bg-transparent',
         mounted ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-0'
       )}
     >
-      <nav className="max-w-6xl mx-auto px-6 h-[72px] grid grid-cols-[1fr_auto_1fr] items-center">
-        <Link href="#" className="justify-self-start">
-          <Logo />
-        </Link>
+      <nav className="max-w-7xl mx-auto px-6 h-[72px] flex items-center">
+        <div className="flex-1 flex items-center">
+          <Link href="#">
+            <Logo />
+          </Link>
+        </div>
 
-        <ul className="hidden md:flex items-center gap-10 justify-self-center">
+        <ul className="hidden md:flex items-center gap-1">
           {links.map((l) => (
             <li key={l.href}>
               <Link
                 href={l.href}
-                className="text-[15px] font-medium font-inter text-foreground hover:text-foreground/80 transition-colors"
+                className="inline-flex items-center text-[16px] font-medium font-inter text-foreground transition-all py-[10px] px-[20px] rounded-md hover:bg-white/20 hover:backdrop-blur-md"
               >
                 {l.label}
               </Link>
@@ -60,12 +62,20 @@ export default function Navbar() {
           ))}
         </ul>
 
-        <div className="justify-self-end flex items-center gap-3">
-          <Button variant="outline" className="hidden md:inline-flex font-inter rounded-[8px] border border-black/[.08] bg-transparent hover:bg-black/5 transition-colors" asChild>
-            <Link href="#contact">Falar com consultor</Link>
+        <div className="flex-1 flex items-center justify-end gap-3">
+          <Button
+            variant="ghost"
+            className={`hidden md:inline-flex text-[16px] h-auto py-[10px] px-[20px] font-medium font-inter text-foreground hover:text-foreground border transition-colors duration-500 ${
+              scrolled
+                ? 'border-black/10 bg-transparent hover:bg-black/5'
+                : 'border-transparent bg-transparent hover:bg-white/20'
+            }`}
+            asChild
+          >
+            <Link href="#contact">Revenda</Link>
           </Button>
-          <Button variant="dark" className="hidden md:inline-flex font-inter rounded-[8px]" asChild>
-            <Link href="#contact">Começar teste grátis</Link>
+          <Button className="hidden md:inline-flex text-[16px] h-auto py-[10px] px-[20px] font-medium font-inter" asChild>
+            <Link href="#contact">Acessar</Link>
           </Button>
 
           <Sheet>
@@ -90,11 +100,11 @@ export default function Navbar() {
                     {l.label}
                   </Link>
                 ))}
-                <Button variant="outline" className="mt-4 font-inter rounded-[8px] border border-black/[.08] bg-transparent hover:bg-black/5 transition-colors" asChild>
-                  <Link href="#contact">Falar com consultor</Link>
+                <Button variant="ghost" className="mt-4 border-0 bg-white/20 backdrop-blur-md hover:bg-white/30 text-foreground hover:text-foreground" asChild>
+                  <Link href="#contact">Revenda</Link>
                 </Button>
-                <Button variant="dark" className="font-inter rounded-[8px]" asChild>
-                  <Link href="#contact">Começar teste grátis</Link>
+                <Button asChild>
+                  <Link href="#contact">Acessar</Link>
                 </Button>
               </nav>
             </SheetContent>
