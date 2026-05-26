@@ -40,9 +40,13 @@ export default function Footer() {
           <div>
             <h5 className="font-inter font-medium text-sm mb-4">Produto</h5>
             <ul className="flex flex-col gap-3">
-              {['Funcionalidades', 'App mobile', 'Perfis de usuário'].map((label) => (
+              {[
+                { label: 'Funcionalidades', href: '#funcionalidades' },
+                { label: 'App mobile', href: '#app' },
+                { label: 'Perfis de usuário', href: '#perfis' },
+              ].map(({ label, href }) => (
                 <li key={label}>
-                  <span className="text-sm text-muted-foreground font-inter">{label}</span>
+                  <a href={href} className="text-sm text-muted-foreground font-inter hover:text-foreground transition-colors">{label}</a>
                 </li>
               ))}
             </ul>
@@ -51,9 +55,12 @@ export default function Footer() {
           <div>
             <h5 className="font-inter font-medium text-sm mb-4">Empresa</h5>
             <ul className="flex flex-col gap-3">
-              {['Proposta de valor', 'Contato'].map((label) => (
+              {[
+                { label: 'Proposta de valor', href: '#beneficios' },
+                { label: 'Contato', href: '#revenda' },
+              ].map(({ label, href }) => (
                 <li key={label}>
-                  <span className="text-sm text-muted-foreground font-inter">{label}</span>
+                  <a href={href} className="text-sm text-muted-foreground font-inter hover:text-foreground transition-colors">{label}</a>
                 </li>
               ))}
             </ul>
@@ -62,9 +69,12 @@ export default function Footer() {
           <div>
             <h5 className="font-inter font-medium text-sm mb-4">Recursos</h5>
             <ul className="flex flex-col gap-3">
-              {['Dúvidas frequentes', 'Seja um revendedor'].map((label) => (
+              {[
+                { label: 'Dúvidas frequentes', href: '#duvidas' },
+                { label: 'Seja um revendedor', href: '#revenda' },
+              ].map(({ label, href }) => (
                 <li key={label}>
-                  <span className="text-sm text-muted-foreground font-inter">{label}</span>
+                  <a href={href} className="text-sm text-muted-foreground font-inter hover:text-foreground transition-colors">{label}</a>
                 </li>
               ))}
             </ul>
@@ -73,9 +83,12 @@ export default function Footer() {
           <div>
             <h5 className="font-inter font-medium text-sm mb-4">Legal</h5>
             <ul className="flex flex-col gap-3">
-              {['Privacidade', 'Termos'].map((label) => (
+              {[
+                { label: 'Privacidade', href: '#' },
+                { label: 'Termos', href: '#' },
+              ].map(({ label, href }) => (
                 <li key={label}>
-                  <span className="text-sm text-muted-foreground font-inter">{label}</span>
+                  <a href={href} className="text-sm text-muted-foreground font-inter hover:text-foreground transition-colors">{label}</a>
                 </li>
               ))}
             </ul>

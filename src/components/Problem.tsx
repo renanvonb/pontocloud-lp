@@ -11,7 +11,6 @@ export default function Problem() {
     <section id="recursos" className="relative z-20 py-24 bg-white">
       <div className="max-w-7xl mx-auto px-6">
         <div className="max-w-2xl mx-auto text-center reveal mb-12">
-          <p className="text-sm font-semibold tracking-widest uppercase text-primary mb-3 font-[family-name:var(--font-geist-sans)]">Recursos</p>
           <h2 className="text-[42px] leading-tight font-normal tracking-[-0.03em] mb-6 font-[family-name:var(--font-geist-sans)]">
             Registro de ponto digital
             <br />com integração perfeita entre dispositivos

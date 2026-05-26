@@ -20,7 +20,6 @@ export default function ValueProposition() {
     <section id="beneficios" className="py-24 bg-background">
       <div className="max-w-7xl mx-auto px-6 grid lg:grid-cols-12 gap-12 items-center">
         <div className="lg:col-span-5 reveal">
-          <p className="text-sm font-semibold tracking-widest uppercase text-primary mb-3 font-[family-name:var(--font-geist-sans)]">Para todos os perfis</p>
           <h2 className="text-[42px] leading-tight font-normal tracking-[-0.03em] mb-5 font-[family-name:var(--font-geist-sans)]">
             Simples para registrar. Poderoso para tratar.
           </h2>
@@ -28,7 +27,7 @@ export default function ValueProposition() {
             O PontoCloud combina uma experiência clara para seus colaboradores com as ferramentas que gestores e DP precisam para apurar, corrigir e fechar o ponto com mais segurança.
           </p>
           <Button size="lg" className="font-inter text-[16px] h-auto py-[10px] px-[20px] font-medium" asChild>
-            <a href="#contact">Falar com nossa equipe</a>
+            <a href="#revenda">Falar com nossa equipe</a>
           </Button>
         </div>
 

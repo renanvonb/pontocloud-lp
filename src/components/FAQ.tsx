@@ -40,9 +40,9 @@ export default function FAQ() {
           <div className="reveal">
             <p className="text-sm font-semibold tracking-widest uppercase text-primary mb-3 font-[family-name:var(--font-geist-sans)]">Dúvidas frequentes</p>
             <h2 className="text-[42px] leading-tight font-normal tracking-[-0.03em] mb-4 font-[family-name:var(--font-geist-sans)]">
-              Dúvidas
+              Respondemos as
               <br />
-              frequentes
+              principais questões
             </h2>
             <p className="text-muted-foreground text-lg leading-relaxed font-[family-name:var(--font-geist-sans)]">
               Respostas diretas sobre o uso do PontoCloud por gestores, DP e colaboradores.

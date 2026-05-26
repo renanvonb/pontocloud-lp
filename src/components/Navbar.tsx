@@ -94,14 +94,14 @@ export default function Navbar() {
         <div className="flex-1 flex items-center justify-end gap-3">
           <Button
             variant="ghost"
+            onClick={() => scrollToSection('#revenda')}
             className={`hidden md:inline-flex text-[16px] h-auto py-[10px] px-[14px] font-medium font-inter text-foreground hover:text-foreground border transition-colors duration-500 ${
               scrolled
                 ? 'border-black/10 bg-transparent hover:bg-black/5'
                 : 'border-black/10 bg-transparent hover:bg-white/20'
             }`}
-            asChild
           >
-            <Link href="#contact">Área da revenda</Link>
+            Área da revenda
           </Button>
           <Button className="hidden md:inline-flex text-[16px] h-auto py-[10px] px-[14px] font-medium font-inter" asChild>
             <Link href="#contact">Acessar</Link>
