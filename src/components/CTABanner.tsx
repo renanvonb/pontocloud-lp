@@ -19,10 +19,11 @@ export default function CTABanner() {
   }
 
   return (
-    <section id="contact" className="py-36 bg-black relative overflow-hidden">
+    <section id="revenda" className="py-24 bg-black relative overflow-hidden">
       <div className="absolute inset-0 pointer-events-none" style={{ background: 'linear-gradient(to top right, rgba(14,165,233,0.35) 0%, transparent 55%)' }} />
       <div className="relative z-10 max-w-7xl mx-auto px-6 grid lg:grid-cols-12 gap-12 lg:gap-16 items-center">
         <div className="lg:col-span-7 text-left reveal text-white">
+          <p className="text-sm font-semibold tracking-widest uppercase text-sky-400 mb-3 font-[family-name:var(--font-geist-sans)]">Programa de revendas</p>
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-medium leading-tight tracking-[-0.03em] mb-6 font-[family-name:var(--font-geist-sans)]">
             Torne-se<br />uma revenda<br /><span style={{ color: '#0EA5E9' }}>PontoCloud</span>
           </h2>

@@ -17,10 +17,11 @@ const employeeItems = [
 
 export default function ValueProposition() {
   return (
-    <section id="valor" className="py-36 bg-background">
+    <section id="beneficios" className="py-24 bg-background">
       <div className="max-w-7xl mx-auto px-6 grid lg:grid-cols-12 gap-12 items-center">
         <div className="lg:col-span-5 reveal">
-          <h2 className="text-3xl md:text-5xl font-medium tracking-[-0.03em] mb-5 font-[family-name:var(--font-geist-sans)]">
+          <p className="text-sm font-semibold tracking-widest uppercase text-primary mb-3 font-[family-name:var(--font-geist-sans)]">Para todos os perfis</p>
+          <h2 className="text-[42px] leading-tight font-normal tracking-[-0.03em] mb-5 font-[family-name:var(--font-geist-sans)]">
             Simples para registrar. Poderoso para tratar.
           </h2>
           <p className="text-muted-foreground text-lg leading-relaxed mb-8 font-[family-name:var(--font-geist-sans)]">

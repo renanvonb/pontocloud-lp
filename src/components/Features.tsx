@@ -48,10 +48,11 @@ const features = [
 
 export default function Features() {
   return (
-    <section id="features" className="py-36 bg-background">
+    <section id="features-detail" className="py-24 bg-background">
       <div className="max-w-7xl mx-auto px-6">
         <div className="max-w-2xl mx-auto text-center mb-[64px] reveal">
-          <h2 className="text-3xl md:text-5xl font-medium tracking-[-0.03em] mb-6 font-[family-name:var(--font-geist-sans)]">
+          <p className="text-sm font-semibold tracking-widest uppercase text-primary mb-3 font-[family-name:var(--font-geist-sans)]">Funcionalidades</p>
+          <h2 className="text-[42px] leading-tight font-normal tracking-[-0.03em] mb-6 font-[family-name:var(--font-geist-sans)]">
             Tudo que você precisa para registrar, tratar e fechar o ponto
           </h2>
           <p className="text-muted-foreground text-lg leading-relaxed font-[family-name:var(--font-geist-sans)]">

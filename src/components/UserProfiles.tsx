@@ -19,10 +19,11 @@ const profiles = [
 
 export default function UserProfiles() {
   return (
-    <section id="perfis" className="py-36 bg-background relative z-20">
+    <section id="perfis" className="py-24 bg-background relative z-20">
       <div className="max-w-7xl mx-auto px-6">
         <div className="max-w-2xl mx-auto text-center mb-[64px] reveal">
-          <h2 className="text-3xl md:text-5xl font-medium tracking-[-0.03em] font-[family-name:var(--font-geist-sans)]">
+          <p className="text-sm font-semibold tracking-widest uppercase text-primary mb-3 font-[family-name:var(--font-geist-sans)]">Perfis de acesso</p>
+          <h2 className="text-[42px] leading-tight font-normal tracking-[-0.03em] font-[family-name:var(--font-geist-sans)]">
             Cada perfil vê exatamente o que precisa para trabalhar melhor.
           </h2>
         </div>

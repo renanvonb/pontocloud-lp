@@ -25,7 +25,8 @@ export default function MobileApp() {
         </div>
 
         <div className="lg:col-span-7 reveal pb-36">
-          <h2 className="text-3xl md:text-5xl font-medium tracking-[-0.03em] mb-5 font-[family-name:var(--font-geist-sans)]">
+          <p className="text-sm font-semibold tracking-widest uppercase text-primary mb-3 font-[family-name:var(--font-geist-sans)]">Sempre com você</p>
+          <h2 className="text-[42px] leading-tight font-normal tracking-[-0.03em] mb-5 font-[family-name:var(--font-geist-sans)]">
             O ponto de contato diário do colaborador com a jornada.
           </h2>
           <p className="text-muted-foreground text-lg leading-relaxed mb-8 font-[family-name:var(--font-geist-sans)]">

@@ -34,11 +34,12 @@ const faqs = [
 
 export default function FAQ() {
   return (
-    <section id="faq" className="py-36 bg-white">
+    <section id="duvidas" className="py-24 bg-white">
       <div className="max-w-7xl mx-auto px-6">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-20">
           <div className="reveal">
-            <h2 className="text-3xl md:text-5xl font-medium tracking-[-0.03em] mb-4 font-[family-name:var(--font-geist-sans)]">
+            <p className="text-sm font-semibold tracking-widest uppercase text-primary mb-3 font-[family-name:var(--font-geist-sans)]">Dúvidas frequentes</p>
+            <h2 className="text-[42px] leading-tight font-normal tracking-[-0.03em] mb-4 font-[family-name:var(--font-geist-sans)]">
               Dúvidas
               <br />
               frequentes
