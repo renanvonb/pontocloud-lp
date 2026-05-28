@@ -17,6 +17,38 @@ function InstagramIcon() {
   )
 }
 
+const columns = [
+  {
+    title: 'Lorem',
+    links: [
+      { label: 'Ipsum', href: '#' },
+      { label: 'Ipsum', href: '#' },
+      { label: 'Ipsum', href: '#' },
+    ],
+  },
+  {
+    title: 'Lorem',
+    links: [
+      { label: 'Ipsum', href: '#' },
+      { label: 'Ipsum', href: '#' },
+    ],
+  },
+  {
+    title: 'Lorem',
+    links: [
+      { label: 'Ipsum', href: '#' },
+      { label: 'Ipsum', href: '#' },
+    ],
+  },
+  {
+    title: 'Lorem',
+    links: [
+      { label: 'Ipsum', href: '#' },
+      { label: 'Ipsum', href: '#' },
+    ],
+  },
+]
+
 export default function Footer() {
   return (
     <footer className="bg-card border-t border-border pt-16 pb-8">
@@ -25,74 +57,30 @@ export default function Footer() {
           <div className="col-span-2">
             <Logo />
             <p className="text-muted-foreground text-sm mt-4 mb-6 max-w-xs leading-relaxed font-inter">
-              Controle de ponto eletrônico simples de registrar, fácil de tratar e rápido de fechar para PMEs brasileiras.
+              Seu aliado completo para simplificar a rotina de registro e controle da sua empresa
             </p>
             <div className="flex gap-3">
-              <a href="#" aria-label="WhatsApp" className="w-9 h-9 rounded-full bg-muted flex items-center justify-center text-muted-foreground hover:text-foreground transition-colors">
+              <span className="w-9 h-9 rounded-full bg-muted flex items-center justify-center text-muted-foreground">
                 <WhatsAppIcon />
-              </a>
-              <a href="#" aria-label="Instagram" className="w-9 h-9 rounded-full bg-muted flex items-center justify-center text-muted-foreground hover:text-foreground transition-colors">
+              </span>
+              <span className="w-9 h-9 rounded-full bg-muted flex items-center justify-center text-muted-foreground">
                 <InstagramIcon />
-              </a>
+              </span>
             </div>
           </div>
 
-          <div>
-            <h5 className="font-inter font-medium text-sm mb-4">Produto</h5>
-            <ul className="flex flex-col gap-3">
-              {[
-                { label: 'Funcionalidades', href: '#funcionalidades' },
-                { label: 'App mobile', href: '#app' },
-                { label: 'Perfis de usuário', href: '#perfis' },
-              ].map(({ label, href }) => (
-                <li key={label}>
-                  <a href={href} className="text-sm text-muted-foreground font-inter hover:text-foreground transition-colors">{label}</a>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <div>
-            <h5 className="font-inter font-medium text-sm mb-4">Empresa</h5>
-            <ul className="flex flex-col gap-3">
-              {[
-                { label: 'Proposta de valor', href: '#beneficios' },
-                { label: 'Contato', href: '#revenda' },
-              ].map(({ label, href }) => (
-                <li key={label}>
-                  <a href={href} className="text-sm text-muted-foreground font-inter hover:text-foreground transition-colors">{label}</a>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <div>
-            <h5 className="font-inter font-medium text-sm mb-4">Recursos</h5>
-            <ul className="flex flex-col gap-3">
-              {[
-                { label: 'Dúvidas frequentes', href: '#duvidas' },
-                { label: 'Seja um revendedor', href: '#revenda' },
-              ].map(({ label, href }) => (
-                <li key={label}>
-                  <a href={href} className="text-sm text-muted-foreground font-inter hover:text-foreground transition-colors">{label}</a>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <div>
-            <h5 className="font-inter font-medium text-sm mb-4">Legal</h5>
-            <ul className="flex flex-col gap-3">
-              {[
-                { label: 'Privacidade', href: '#' },
-                { label: 'Termos', href: '#' },
-              ].map(({ label, href }) => (
-                <li key={label}>
-                  <a href={href} className="text-sm text-muted-foreground font-inter hover:text-foreground transition-colors">{label}</a>
-                </li>
-              ))}
-            </ul>
-          </div>
+          {columns.map((col) => (
+            <div key={col.title + col.links[0].label + Math.random()}>
+              <h5 className="font-inter font-medium text-sm mb-4">{col.title}</h5>
+              <ul className="flex flex-col gap-3">
+                {col.links.map((link, i) => (
+                  <li key={i}>
+                    <a href={link.href} className="text-sm text-muted-foreground font-inter hover:text-foreground transition-colors">{link.label}</a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
         </div>
 
         <Separator className="mb-8" />

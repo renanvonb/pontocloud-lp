@@ -36,31 +36,30 @@ export default function FAQ() {
   return (
     <section id="duvidas" className="py-24 bg-white">
       <div className="max-w-7xl mx-auto px-6">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-20">
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-stretch">
           <div className="reveal">
-            <p className="text-sm font-semibold tracking-widest uppercase text-primary mb-3 font-[family-name:var(--font-geist-sans)]">Dúvidas frequentes</p>
-            <h2 className="text-[42px] leading-tight font-normal tracking-[-0.03em] mb-4 font-[family-name:var(--font-geist-sans)]">
-              Respondemos as
+            <h2 className="text-[42px] leading-tight font-normal tracking-[-0.03em] mb-10 font-[family-name:var(--font-geist-sans)]">
+              Respondemos suas
               <br />
-              principais questões
+              principais dúvidas
             </h2>
-            <p className="text-muted-foreground text-lg leading-relaxed font-[family-name:var(--font-geist-sans)]">
-              Respostas diretas sobre o uso do PontoCloud por gestores, DP e colaboradores.
-            </p>
+            <Accordion type="single" collapsible defaultValue="item-0" className="border-t border-border/40">
+              {faqs.map((faq, i) => (
+                <AccordionItem key={faq.q} value={`item-${i}`} className="border-b border-border/40 border-x-0 rounded-none">
+                  <AccordionTrigger className="font-[family-name:var(--font-geist-sans)] font-normal text-[18px] tracking-[-0.02em] py-5 px-0 hover:no-underline data-[state=open]:font-medium">
+                    {faq.q}
+                  </AccordionTrigger>
+                  <AccordionContent className="font-inter text-muted-foreground leading-relaxed text-[15px] px-0 tracking-[-0.01em]">
+                    {faq.a}
+                  </AccordionContent>
+                </AccordionItem>
+              ))}
+            </Accordion>
           </div>
 
-          <Accordion type="single" collapsible defaultValue="item-0" className="reveal space-y-3">
-            {faqs.map((faq, i) => (
-              <AccordionItem key={faq.q} value={`item-${i}`}>
-                <AccordionTrigger className="font-[family-name:var(--font-geist-sans)] font-medium tracking-[-0.01em]">
-                  {faq.q}
-                </AccordionTrigger>
-                <AccordionContent className="font-[family-name:var(--font-geist-sans)] text-muted-foreground leading-relaxed">
-                  {faq.a}
-                </AccordionContent>
-              </AccordionItem>
-            ))}
-          </Accordion>
+          <div className="reveal rounded-2xl bg-[#f5f6f8] border-2 border-dashed border-border/40 flex items-center justify-center min-h-full">
+            <span className="text-sm text-muted-foreground/40 font-inter select-none">Imagem em breve</span>
+          </div>
         </div>
       </div>
     </section>

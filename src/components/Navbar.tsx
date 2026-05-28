@@ -15,8 +15,8 @@ import {
 import { cn } from '@/lib/utils'
 
 const links = [
-  { label: 'Recursos', href: '#recursos' },
   { label: 'Benefícios', href: '#beneficios' },
+  { label: 'Recursos', href: '#recursos' },
   { label: 'Dúvidas', href: '#duvidas' },
   { label: 'Planos', href: '#planos' },
   { label: 'Revenda', href: '#revenda' },
@@ -24,35 +24,53 @@ const links = [
 
 const NAVBAR_HEIGHT = 80
 
-function easeInOutCubic(t: number) {
-  return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2
+function easeOutQuart(t: number) {
+  return 1 - Math.pow(1 - t, 4)
 }
 
-function scrollToSection(href: string) {
-  const id = href.replace('#', '')
-  const target = document.getElementById(id)
-  if (!target) return
-
-  const targetY = target.getBoundingClientRect().top + window.scrollY - NAVBAR_HEIGHT
+function smoothScrollTo(targetY: number) {
   const startY = window.scrollY
   const distance = targetY - startY
-  const duration = Math.min(Math.max(Math.abs(distance) * 0.4, 400), 900)
+  const duration = Math.min(Math.max(Math.abs(distance) * 0.15, 150), 400)
   let startTime: number | null = null
 
   function step(timestamp: number) {
     if (!startTime) startTime = timestamp
     const elapsed = timestamp - startTime
     const progress = Math.min(elapsed / duration, 1)
-    window.scrollTo(0, startY + distance * easeInOutCubic(progress))
+    window.scrollTo(0, startY + distance * easeOutQuart(progress))
     if (progress < 1) requestAnimationFrame(step)
   }
 
   requestAnimationFrame(step)
 }
 
+function scrollToSection(href: string) {
+  const id = href.replace('#', '')
+  const target = document.getElementById(id)
+  if (!target) return
+  const targetY = target.getBoundingClientRect().top + window.scrollY - NAVBAR_HEIGHT
+  smoothScrollTo(targetY)
+}
+
+function scrollToTop() {
+  smoothScrollTo(0)
+}
+
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
   const [mounted, setMounted] = useState(false)
+  const [hoveredBtn, setHoveredBtn] = useState<string | null>(null)
+
+  function slideText(text: string, key: string) {
+    const hovered = hoveredBtn === key
+    return (
+      <span style={{ display: 'block', height: '1.3em', overflow: 'hidden', lineHeight: '1.3' }}>
+        <span style={{ display: 'block', lineHeight: '1.3', transition: 'transform 0.3s cubic-bezier(0.4,0,0.2,1)', transform: hovered ? 'translateY(-1.3em)' : 'translateY(0)', willChange: 'transform' }}>{text}</span>
+        <span style={{ display: 'block', lineHeight: '1.3', transition: 'transform 0.3s cubic-bezier(0.4,0,0.2,1)', transform: hovered ? 'translateY(-1.3em)' : 'translateY(0)', willChange: 'transform' }}>{text}</span>
+      </span>
+    )
+  }
 
   useEffect(() => {
     setMounted(true)
@@ -73,9 +91,9 @@ export default function Navbar() {
     >
       <nav className="relative max-w-7xl mx-auto px-6 h-[72px] flex items-center">
         <div className="flex items-center">
-          <Link href="#">
+          <button onClick={scrollToTop} className="cursor-pointer">
             <Logo />
-          </Link>
+          </button>
         </div>
 
         <ul className="hidden md:flex items-center gap-[4px] absolute left-1/2 -translate-x-1/2">
@@ -83,7 +101,11 @@ export default function Navbar() {
             <li key={l.href}>
               <button
                 onClick={() => scrollToSection(l.href)}
-                className="inline-flex items-center text-[16px] font-medium font-inter text-foreground transition-all py-[10px] px-[14px] rounded-md hover:bg-white/20 hover:backdrop-blur-md cursor-pointer"
+                className={`inline-flex items-center text-[16px] font-normal font-inter transition-all py-[12px] px-[16px] rounded-md cursor-pointer ${
+                  scrolled
+                    ? 'text-foreground hover:text-black'
+                    : 'text-foreground hover:bg-white/20 hover:backdrop-blur-md'
+                }`}
               >
                 {l.label}
               </button>
@@ -94,17 +116,28 @@ export default function Navbar() {
         <div className="flex-1 flex items-center justify-end gap-3">
           <Button
             variant="ghost"
-            onClick={() => scrollToSection('#revenda')}
-            className={`hidden md:inline-flex text-[16px] h-auto py-[10px] px-[14px] font-medium font-inter text-foreground hover:text-foreground border transition-colors duration-500 ${
+            onMouseEnter={() => setHoveredBtn('revenda')}
+            onMouseLeave={() => setHoveredBtn(null)}
+            className={`hidden md:inline-flex text-[16px] h-auto py-[12px] px-[16px] font-medium font-inter text-foreground hover:text-foreground border transition-colors duration-500 ${
               scrolled
                 ? 'border-black/10 bg-transparent hover:bg-black/5'
                 : 'border-black/10 bg-transparent hover:bg-white/20'
             }`}
+            asChild
           >
-            Área da revenda
+            <a href="https://revendas.dev.ponto.cloud/" target="_blank" rel="noopener noreferrer">
+              {slideText('Área da revenda', 'revenda')}
+            </a>
           </Button>
-          <Button className="hidden md:inline-flex text-[16px] h-auto py-[10px] px-[14px] font-medium font-inter" asChild>
-            <Link href="#contact">Acessar</Link>
+          <Button
+            className="hidden md:inline-flex text-[16px] h-auto py-[12px] px-[16px] font-medium font-inter"
+            onMouseEnter={() => setHoveredBtn('acessar')}
+            onMouseLeave={() => setHoveredBtn(null)}
+            asChild
+          >
+            <a href="https://app.dev.ponto.cloud/" target="_blank" rel="noopener noreferrer">
+              {slideText('Acessar', 'acessar')}
+            </a>
           </Button>
 
           <Sheet>
@@ -130,10 +163,10 @@ export default function Navbar() {
                   </button>
                 ))}
                 <Button variant="ghost" className="mt-4 border-0 bg-white/20 backdrop-blur-md hover:bg-white/30 text-foreground hover:text-foreground" asChild>
-                  <Link href="#contact">Revenda</Link>
+                  <a href="https://revendas.dev.ponto.cloud/" target="_blank" rel="noopener noreferrer">Área da revenda</a>
                 </Button>
                 <Button asChild>
-                  <Link href="#contact">Acessar</Link>
+                  <a href="https://app.dev.ponto.cloud/" target="_blank" rel="noopener noreferrer">Acessar</a>
                 </Button>
               </nav>
             </SheetContent>

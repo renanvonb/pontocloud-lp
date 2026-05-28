@@ -6,10 +6,8 @@ import Hero from '@/components/Hero'
 import Clients from '@/components/Clients'
 import Problem from '@/components/Problem'
 import ProblemV2 from '@/components/ProblemV2'
-import Features from '@/components/Features'
 import ValueProposition from '@/components/ValueProposition'
-import MobileApp from '@/components/MobileApp'
-import UserProfiles from '@/components/UserProfiles'
+import FeatureRows from '@/components/FeatureRows'
 import CTABanner from '@/components/CTABanner'
 import FAQ from '@/components/FAQ'
 import Planos from '@/components/Planos'
@@ -25,16 +23,15 @@ export default function Home() {
       <Clients />
       <hr className="border-border" />
       {/* Recursos */}
-      <Problem />
       <ProblemV2 />
-      <Features />
       {/* Benefícios */}
       <ValueProposition />
-      <MobileApp />
-      <UserProfiles />
+      <Problem />
+      <FeatureRows />
       {/* Dúvidas */}
       <FAQ />
       {/* Planos */}
+      <hr className="border-border" />
       <Planos />
       {/* Revenda */}
       <CTABanner />

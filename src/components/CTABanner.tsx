@@ -10,6 +10,16 @@ export default function CTABanner() {
   const [phone, setPhone] = useState('')
   const [region, setRegion] = useState('')
   const [submitted, setSubmitted] = useState(false)
+  const [hovered, setHovered] = useState(false)
+
+  function slideText(text: string) {
+    return (
+      <span style={{ display: 'block', height: '1.3em', overflow: 'hidden', lineHeight: '1.3' }}>
+        <span style={{ display: 'block', lineHeight: '1.3', transition: 'transform 0.3s cubic-bezier(0.4,0,0.2,1)', transform: hovered ? 'translateY(-1.3em)' : 'translateY(0)', willChange: 'transform' }}>{text}</span>
+        <span style={{ display: 'block', lineHeight: '1.3', transition: 'transform 0.3s cubic-bezier(0.4,0,0.2,1)', transform: hovered ? 'translateY(-1.3em)' : 'translateY(0)', willChange: 'transform' }}>{text}</span>
+      </span>
+    )
+  }
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
@@ -20,10 +30,9 @@ export default function CTABanner() {
 
   return (
     <section id="revenda" className="py-24 bg-black relative overflow-hidden">
-      <div className="absolute inset-0 pointer-events-none" style={{ background: 'linear-gradient(to top right, rgba(14,165,233,0.35) 0%, transparent 55%)' }} />
-      <div className="relative z-10 max-w-7xl mx-auto px-6 grid lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-        <div className="lg:col-span-7 text-left reveal text-white">
-          <p className="text-sm font-semibold tracking-widest uppercase text-sky-400 mb-3 font-[family-name:var(--font-geist-sans)]">Programa de revendas</p>
+      <div className="absolute inset-0 pointer-events-none" style={{ background: 'linear-gradient(to top right, rgba(14,165,233,0.35) 0%, transparent 75%)' }} />
+      <div className="relative z-10 max-w-7xl mx-auto px-6 grid lg:grid-cols-12 gap-12 lg:gap-16 items-stretch">
+        <div className="lg:col-span-7 text-left reveal text-white flex flex-col justify-center">
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-medium leading-tight tracking-[-0.03em] mb-6 font-[family-name:var(--font-geist-sans)]">
             Torne-se<br />uma revenda<br /><span style={{ color: '#0EA5E9' }}>PontoCloud</span>
           </h2>
@@ -44,8 +53,8 @@ export default function CTABanner() {
           </ul>
         </div>
 
-        <div className="lg:col-span-5 reveal">
-          <div className="bg-[#1a1a1a] rounded-2xl p-6 md:p-8 text-white">
+        <div className="lg:col-span-5 reveal flex flex-col">
+          <div className="flex-1 rounded-2xl p-6 md:p-8 text-white flex flex-col" style={{ background: 'rgba(255,255,255,0.05)', backdropFilter: 'blur(20px)', WebkitBackdropFilter: 'blur(20px)', border: '1px solid rgba(255,255,255,0.10)' }}>
             {submitted ? (
               <div className="text-center py-12">
                 <h3 className="text-2xl font-medium mb-2 font-[family-name:var(--font-geist-sans)]">Interesse registrado!</h3>
@@ -54,8 +63,8 @@ export default function CTABanner() {
                 </p>
               </div>
             ) : (
-              <form onSubmit={handleSubmit} className="space-y-4">
-                <h3 className="text-xl font-medium mb-2 font-[family-name:var(--font-geist-sans)]">Quero ser um revendedor</h3>
+              <form onSubmit={handleSubmit} className="flex flex-col flex-1 space-y-6">
+                <h3 className="text-xl font-medium mb-2 font-[family-name:var(--font-geist-sans)]">Preencha o formulário</h3>
                 <div>
                   <label htmlFor="name" className="block text-xs font-medium text-white/70 mb-1 font-[family-name:var(--font-geist-sans)]">Nome completo</label>
                   <Input
@@ -65,7 +74,7 @@ export default function CTABanner() {
                     placeholder="Seu nome"
                     value={name}
                     onChange={(e) => setName(e.target.value)}
-                    className="bg-white/10 border-white/20 placeholder:text-white/50 text-white rounded-xl focus-visible:ring-white/35"
+                    className="bg-white/10 border-0 placeholder:text-white/50 text-white rounded-md focus-visible:ring-white/35"
                   />
                 </div>
                 <div>
@@ -77,7 +86,7 @@ export default function CTABanner() {
                     placeholder="seu.nome@empresa.com"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    className="bg-white/10 border-white/20 placeholder:text-white/50 text-white rounded-xl focus-visible:ring-white/35"
+                    className="bg-white/10 border-0 placeholder:text-white/50 text-white rounded-md focus-visible:ring-white/35"
                   />
                 </div>
                 <div className="grid sm:grid-cols-2 gap-4">
@@ -90,7 +99,7 @@ export default function CTABanner() {
                       placeholder="(11) 99999-9999"
                       value={phone}
                       onChange={(e) => setPhone(e.target.value)}
-                      className="h-10 bg-white/10 border-white/20 placeholder:text-white/50 text-white rounded-xl focus-visible:ring-white/35"
+                      className="h-10 bg-white/10 border-0 placeholder:text-white/50 text-white rounded-md focus-visible:ring-white/35"
                     />
                   </div>
                   <div>
@@ -100,7 +109,7 @@ export default function CTABanner() {
                       required
                       value={region}
                       onChange={(e) => setRegion(e.target.value)}
-                      className="w-full h-10 px-3 bg-white/10 border border-white/20 text-white rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-white/35"
+                      className="w-full h-10 px-3 bg-white/10 border-0 text-white rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-white/35"
                     >
                       <option className="text-black" value="">Selecione...</option>
                       <option className="text-black" value="norte">Norte</option>
@@ -113,9 +122,11 @@ export default function CTABanner() {
                 </div>
                 <Button
                   type="submit"
-                  className="w-full mt-[48px] text-[16px] h-auto py-[10px] px-[20px] font-medium font-inter"
+                  className="w-full text-[16px] h-auto py-[12px] px-[16px] font-medium font-inter"
+                  onMouseEnter={() => setHovered(true)}
+                  onMouseLeave={() => setHovered(false)}
                 >
-                  Quero ser uma revenda
+                  {slideText('Fale conosco')}
                 </Button>
               </form>
             )}

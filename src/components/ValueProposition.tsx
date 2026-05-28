@@ -1,3 +1,6 @@
+'use client'
+
+import { useState } from 'react'
 import { CheckCircle2 } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 
@@ -16,44 +19,79 @@ const employeeItems = [
 ]
 
 export default function ValueProposition() {
+  const [hovered, setHovered] = useState(false)
+
+  function slideText(text: string) {
+    return (
+      <span style={{ display: 'block', height: '1.3em', overflow: 'hidden', lineHeight: '1.3' }}>
+        <span style={{ display: 'block', lineHeight: '1.3', transition: 'transform 0.3s cubic-bezier(0.4,0,0.2,1)', transform: hovered ? 'translateY(-1.3em)' : 'translateY(0)', willChange: 'transform' }}>{text}</span>
+        <span style={{ display: 'block', lineHeight: '1.3', transition: 'transform 0.3s cubic-bezier(0.4,0,0.2,1)', transform: hovered ? 'translateY(-1.3em)' : 'translateY(0)', willChange: 'transform' }}>{text}</span>
+      </span>
+    )
+  }
+
   return (
-    <section id="beneficios" className="py-24 bg-background">
-      <div className="max-w-7xl mx-auto px-6 grid lg:grid-cols-12 gap-12 items-center">
-        <div className="lg:col-span-5 reveal">
-          <h2 className="text-[42px] leading-tight font-normal tracking-[-0.03em] mb-5 font-[family-name:var(--font-geist-sans)]">
-            Simples para registrar. Poderoso para tratar.
-          </h2>
-          <p className="text-muted-foreground text-lg leading-relaxed mb-8 font-[family-name:var(--font-geist-sans)]">
-            O PontoCloud combina uma experiência clara para seus colaboradores com as ferramentas que gestores e DP precisam para apurar, corrigir e fechar o ponto com mais segurança.
-          </p>
-          <Button size="lg" className="font-inter text-[16px] h-auto py-[10px] px-[20px] font-medium" asChild>
-            <a href="#revenda">Falar com nossa equipe</a>
-          </Button>
-        </div>
+    <section className="pt-16 pb-24 bg-white">
+      <div className="max-w-7xl mx-auto px-6">
+        <div className="reveal rounded-2xl overflow-hidden relative">
+          {/* Background image com blur */}
+          <div
+            className="absolute inset-0"
+            style={{
+              backgroundImage: 'url(/imgs/hero-background-v3.png)',
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+              filter: 'blur(6px)',
+              transform: 'scale(1.15)',
+            }}
+          />
+          {/* White overlay */}
+          <div className="absolute inset-0 bg-white/45" />
 
-        <div className="lg:col-span-7 grid md:grid-cols-2 gap-4">
-          <div className="reveal rounded-2xl bg-white p-6">
-            <h3 className="text-xl font-medium tracking-[-0.02em] mb-5 font-[family-name:var(--font-geist-sans)]">Para o gestor</h3>
-            <ul className="space-y-4">
-              {managerItems.map((item) => (
-                <li key={item} className="flex gap-3 text-sm text-muted-foreground leading-relaxed font-[family-name:var(--font-geist-sans)]">
-                  <CheckCircle2 size={18} className="text-primary shrink-0 mt-0.5" />
-                  {item}
-                </li>
-              ))}
-            </ul>
-          </div>
+          {/* Content */}
+          <div className="relative z-10 grid lg:grid-cols-12 gap-12 items-center px-12 py-12">
+            <div className="lg:col-span-5 reveal">
+              <h2 className="text-[32px] leading-tight font-normal tracking-[-0.03em] mb-5 font-[family-name:var(--font-geist-sans)]">
+                Simples para registrar.<br />Poderoso para tratar.
+              </h2>
+              <p className="text-muted-foreground text-lg leading-relaxed mb-8 font-inter tracking-[-0.01em]">
+                Sua equipe com acesso a uma ferramenta poderosa e intuitiva para registrar, apurar, corrigir e fechar o ponto com agilidade e segurança.
+              </p>
+              <Button
+                className="font-inter text-[16px] h-auto py-[12px] px-[16px] font-medium"
+                onMouseEnter={() => setHovered(true)}
+                onMouseLeave={() => setHovered(false)}
+                asChild
+              >
+                <a href="#revenda">{slideText('Falar com nossa equipe')}</a>
+              </Button>
+            </div>
 
-          <div className="reveal rounded-2xl bg-foreground text-background p-6">
-            <h3 className="text-xl font-medium tracking-[-0.02em] mb-5 font-[family-name:var(--font-geist-sans)]">Para o colaborador</h3>
-            <ul className="space-y-4">
-              {employeeItems.map((item) => (
-                <li key={item} className="flex gap-3 text-sm text-white/80 leading-relaxed font-[family-name:var(--font-geist-sans)]">
-                  <CheckCircle2 size={18} className="text-sky-300 shrink-0 mt-0.5" />
-                  {item}
-                </li>
-              ))}
-            </ul>
+            <div className="lg:col-span-7 grid md:grid-cols-2 gap-4">
+              <div className="reveal rounded-2xl bg-white p-6" style={{ transitionDelay: '100ms' }}>
+                <h3 className="text-xl font-medium tracking-[-0.02em] mb-5 font-[family-name:var(--font-geist-sans)]">Para o gestor</h3>
+                <ul className="space-y-4">
+                  {managerItems.map((item) => (
+                    <li key={item} className="flex gap-3 text-sm text-muted-foreground leading-relaxed font-[family-name:var(--font-geist-sans)]">
+                      <CheckCircle2 size={18} className="text-primary shrink-0 mt-0.5" />
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <div className="reveal rounded-2xl bg-foreground p-6" style={{ transitionDelay: '200ms' }}>
+                <h3 className="text-xl font-medium tracking-[-0.02em] mb-5 font-[family-name:var(--font-geist-sans)] text-white">Para o colaborador</h3>
+                <ul className="space-y-4">
+                  {employeeItems.map((item) => (
+                    <li key={item} className="flex gap-3 text-sm text-white/70 leading-relaxed font-[family-name:var(--font-geist-sans)]">
+                      <CheckCircle2 size={18} className="text-sky-400 shrink-0 mt-0.5" />
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
           </div>
         </div>
       </div>

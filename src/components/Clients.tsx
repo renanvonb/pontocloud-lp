@@ -9,7 +9,7 @@ export default function Clients() {
     <section className="relative z-20 py-20 bg-white">
       <div className="max-w-7xl mx-auto px-6 mb-12 text-center reveal">
         <h2 className="text-base md:text-lg font-medium tracking-[-0.01em] text-muted-foreground font-[family-name:var(--font-geist-sans)]">
-          Empresas que confiam na PontoCloud
+          Empresas que confiam
         </h2>
       </div>
 

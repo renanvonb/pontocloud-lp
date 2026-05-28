@@ -8,43 +8,58 @@ import {
   CalendarDays,
   History,
   FileCheck,
+  BarChart2,
+  TrendingUp,
+  TrendingDown,
+  Bell,
+  LayoutGrid,
 } from 'lucide-react'
+
+const webFeatures = Array.from({ length: 10 }, (_, i) => ({
+  icon: LayoutGrid,
+  label: 'Lorem ipsum',
+  key: i,
+}))
+
+const features = [
+  { icon: Clock, label: 'Registro de ponto' },
+  { icon: History, label: 'Histórico de registros' },
+  { icon: MessageSquare, label: 'Solicitações' },
+  { icon: AlertCircle, label: 'Ocorrências' },
+  { icon: FileCheck, label: 'Comprovantes' },
+  { icon: CalendarDays, label: 'Espelhos de ponto' },
+  { icon: BarChart2, label: 'Banco de horas' },
+  { icon: TrendingUp, label: 'Horas extras' },
+  { icon: TrendingDown, label: 'Horas falta' },
+  { icon: Bell, label: 'Notificações' },
+]
 
 const tabs = [
   {
-    label: 'Aplicativo móvel',
-    title: 'Aplicativo',
-    features: [
-      { icon: Clock, label: 'Registro de ponto' },
-      { icon: MessageSquare, label: 'Solicitações' },
-      { icon: AlertCircle, label: 'Ocorrências' },
-      { icon: CalendarDays, label: 'Espelho de ponto' },
-      { icon: History, label: 'Histórico de marcações' },
-      { icon: FileCheck, label: 'Comprovantes de marcações' },
-    ],
-    description: undefined,
+    label: 'Aplicativo mobile',
+    title: 'Aplicativo mobile',
+    description: 'O ponto de contato diário\ndo colaborador com a jornada',
   },
   {
     label: 'Aplicativo Web',
-    title: 'Gestão via\nnavegador',
-    features: undefined,
-    description: 'Dashboard completo para gestores e DP. Apuração, relatórios e ajustes sem instalação.',
+    title: 'Aplicativo web',
+    description: 'Controle centralizado para sua equipe acompanhar, tratar e fechar ponto',
   },
 ]
 
 export default function Problem() {
   const [active, setActive] = useState(0)
+  const [hoveredTab, setHoveredTab] = useState<number | null>(null)
   const blockRef = useRef<HTMLDivElement>(null)
-  const bgImgRef = useRef<HTMLDivElement>(null)
+  const parallaxRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     const handleScroll = () => {
-      if (!blockRef.current || !bgImgRef.current) return
+      if (!blockRef.current || !parallaxRef.current) return
       const rect = blockRef.current.getBoundingClientRect()
-      // progress: 0 quando seção entra pelo rodapé, 1 quando sai pelo topo
       const progress = (window.innerHeight - rect.top) / (window.innerHeight + rect.height)
       const scale = 1 + Math.max(0, Math.min(progress, 1)) * 0.14
-      bgImgRef.current.style.transform = `scale(${scale})`
+      parallaxRef.current.style.transform = `scale(${scale})`
     }
     window.addEventListener('scroll', handleScroll, { passive: true })
     handleScroll()
@@ -52,107 +67,120 @@ export default function Problem() {
   }, [])
 
   return (
-    <section id="recursos" className="relative z-20 py-24 bg-white">
+    <section id="recursos" className="relative z-20 py-24 bg-[#f5f6f8]">
       <div className="max-w-7xl mx-auto px-6">
 
         {/* Section title */}
         <div className="max-w-2xl mx-auto text-center reveal mb-8">
           <h2 className="text-[42px] leading-tight font-normal tracking-[-0.03em] mb-0 font-[family-name:var(--font-geist-sans)]">
-            Registro de ponto digital com
-            <br />integração perfeita entre dispositivos
+            Integração perfeita entre dispositivos
           </h2>
         </div>
 
-        {/* Tabs — entre título e imagem */}
-        <div className="flex justify-center mb-8">
+        {/* Tabs */}
+        <div className="flex justify-center mb-12 reveal">
           <div className="flex items-center gap-1 bg-foreground/5 border border-border rounded-lg p-1">
             {tabs.map((tab, i) => (
               <button
                 key={tab.label}
                 onClick={() => setActive(i)}
-                className={`text-[13px] font-medium font-inter py-[6px] px-[12px] rounded-md transition-all duration-300 ${
+                onMouseEnter={() => setHoveredTab(i)}
+                onMouseLeave={() => setHoveredTab(null)}
+                className={`text-[16px] font-medium font-inter py-[12px] px-[16px] rounded-md transition-all duration-300 ${
                   i === active
                     ? 'bg-white text-foreground shadow-sm'
                     : 'text-muted-foreground hover:text-foreground'
                 }`}
               >
-                {tab.label}
+                <span style={{ display: 'block', height: '1.3em', overflow: 'hidden', lineHeight: '1.3' }}>
+                  <span style={{ display: 'block', lineHeight: '1.3', transition: 'transform 0.3s cubic-bezier(0.4,0,0.2,1)', transform: hoveredTab === i ? 'translateY(-1.3em)' : 'translateY(0)', willChange: 'transform' }}>{tab.label}</span>
+                  <span style={{ display: 'block', lineHeight: '1.3', transition: 'transform 0.3s cubic-bezier(0.4,0,0.2,1)', transform: hoveredTab === i ? 'translateY(-1.3em)' : 'translateY(0)', willChange: 'transform' }}>{tab.label}</span>
+                </span>
               </button>
             ))}
           </div>
         </div>
 
         {/* Image block */}
-        <div ref={blockRef} className="relative reveal rounded-xl overflow-hidden h-[600px]">
+        <div ref={blockRef} className="relative reveal rounded-xl overflow-hidden h-[700px]">
 
-          {/* Background — Aplicativo móvel (foto) */}
+          {/* Wrapper parallax */}
           <div
-            ref={bgImgRef}
-            className="absolute inset-0 transition-opacity duration-700"
-            style={{
-              opacity: active === 0 ? 1 : 0,
-              backgroundImage: 'url(/imgs/app-mobile.png)',
-              backgroundSize: '120%',
-              backgroundPosition: '5% 43%',
-              transformOrigin: 'center center',
-            }}
+            ref={parallaxRef}
+            className="absolute inset-0"
+            style={{ transformOrigin: 'center center' }}
           >
-            <div className="absolute inset-0 bg-black/20" />
-            {/* gradiente esquerda → direita */}
-            <div className="absolute inset-0" style={{ background: 'linear-gradient(to right, rgba(0,0,0,0.80) 0%, rgba(0,0,0,0.4) 40%, rgba(0,0,0,0) 65%)' }} />
+            {/* Slide mobile */}
+            <div
+              className="absolute inset-0"
+              style={{
+                backgroundImage: 'url(/imgs/app-mobile.png)',
+                backgroundSize: '120%',
+                backgroundPosition: '-20% 52%',
+                transition: 'transform 0.4s cubic-bezier(0.4,0,0.2,1)',
+                transform: active === 0 ? 'translateX(0%)' : 'translateX(-100%)',
+              }}
+            />
+            {/* Slide web */}
+            <div
+              className="absolute inset-0"
+              style={{
+                backgroundImage: 'url(/imgs/app-mobile.png)',
+                backgroundSize: '120%',
+                backgroundPosition: '-20% 52%',
+                transition: 'transform 0.4s cubic-bezier(0.4,0,0.2,1)',
+                transform: active === 1 ? 'translateX(0%)' : 'translateX(100%)',
+              }}
+            />
           </div>
 
-          {/* Background — Aplicativo Web (gradiente) */}
-          <div
-            className="absolute inset-0 transition-opacity duration-700"
-            style={{
-              opacity: active === 1 ? 1 : 0,
-              background: 'linear-gradient(135deg, #0284C7 0%, #38BDF8 50%, #0EA5E9 100%)',
-            }}
-          />
+          {/* Degradê esquerda para disfarçar corte */}
+          <div className="absolute inset-y-0 left-0 w-[280px] pointer-events-none" style={{ background: 'linear-gradient(to right, rgba(0,0,0,1) 0%, rgba(0,0,0,0.6) 50%, rgba(0,0,0,0) 100%)' }} />
 
-          {/* Painel esquerdo — título + cards */}
+          {/* Título com track vertical — "Aplicativo" parece estático */}
+          <div className="absolute top-8 left-8 w-[360px]" style={{ height: '40px', overflow: 'hidden' }}>
+            <div style={{
+              transition: 'transform 0.4s cubic-bezier(0.4,0,0.2,1)',
+              transform: `translateY(${active === 0 ? '0px' : '-40px'})`,
+            }}>
+              <h3 className="text-white text-[32px] leading-[40px] font-normal tracking-[-0.03em] font-[family-name:var(--font-geist-sans)] whitespace-nowrap">
+                Aplicativo mobile
+              </h3>
+              <h3 className="text-white text-[32px] leading-[40px] font-normal tracking-[-0.03em] font-[family-name:var(--font-geist-sans)] whitespace-nowrap">
+                Aplicativo web
+              </h3>
+            </div>
+          </div>
+
+          {/* Painéis — descrição + cards (fade) */}
           {tabs.map((tab, i) => (
             <div
               key={tab.label + '-panel'}
-              className="absolute top-8 left-8 bottom-8 w-[300px] flex flex-col"
+              className="absolute left-8 bottom-8 w-[360px] flex flex-col"
               style={{
+                top: '88px',
                 opacity: i === active ? 1 : 0,
-                transform: `translateY(${(i - active) * 8}px)`,
-                transition: 'opacity 0.35s ease, transform 0.35s ease',
+                transition: 'opacity 0.4s ease',
                 pointerEvents: i === active ? 'auto' : 'none',
               }}
             >
-              {/* Título */}
-              <h3 className="text-white text-[32px] leading-tight font-normal tracking-[-0.03em] whitespace-pre-line font-[family-name:var(--font-geist-sans)]">
-                {tab.title}
-              </h3>
-
-              {/* Espaço igual ao padding do bloco */}
-              <div className="h-8 shrink-0" />
-
-              {/* Cards em 2 colunas preenchendo o restante */}
-              {tab.features ? (
-                <div className="grid grid-cols-2 gap-2 flex-1">
-                  {tab.features.map(({ icon: Icon, label }) => (
-                    <div
-                      key={label}
-                      className="flex flex-col justify-between bg-white/15 hover:bg-white/25 backdrop-blur-md border border-white/10 rounded-lg px-4 py-3 transition-colors duration-200 cursor-default"
-                    >
-                      <Icon size={20} className="text-white/70" />
-                      <span className="text-white/90 text-[14px] leading-snug font-[family-name:var(--font-geist-sans)]">
-                        {label}
-                      </span>
-                    </div>
-                  ))}
-                </div>
-              ) : (
-                <div className="flex-1 bg-white/15 backdrop-blur-md border border-white/10 rounded-lg px-5 py-4">
-                  <p className="text-white/80 text-sm leading-relaxed font-[family-name:var(--font-geist-sans)]">
-                    {tab.description}
-                  </p>
-                </div>
-              )}
+              <p className="text-white/70 text-xl leading-relaxed whitespace-pre-line font-[family-name:var(--font-geist-sans)]">
+                {tab.description}
+              </p>
+              <div className="grid grid-cols-2 gap-3 flex-1 mt-6">
+                {(i === 0 ? features : webFeatures).map(({ icon: Icon, label, ...rest }) => (
+                  <div
+                    key={'key' in rest ? rest.key : label}
+                    className="relative flex flex-col justify-between bg-white/15 backdrop-blur-md rounded-lg px-4 py-4 cursor-default overflow-hidden group"
+                  >
+                    <div className="absolute inset-0 bg-gradient-to-tr from-white/30 to-white/5 opacity-0 group-hover:opacity-100 transition-opacity duration-700 rounded-lg" />
+                    <Icon size={20} className="text-white/70 relative z-10" />
+                    <span className="text-white/90 text-[14px] leading-snug font-[family-name:var(--font-geist-sans)] relative z-10">
+                      {label}
+                    </span>
+                  </div>
+                ))}
+              </div>
             </div>
           ))}
 

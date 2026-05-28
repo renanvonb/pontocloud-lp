@@ -40,58 +40,33 @@ const items = [
 
 export default function ProblemV2() {
   return (
-    <section id="funcionalidades" className="relative z-20 bg-[#f5f6f8] py-24">
+    <section id="beneficios" className="relative z-20 bg-white pt-24 pb-0">
       <div className="max-w-7xl mx-auto px-6">
 
         {/* Header */}
         <div className="max-w-2xl mx-auto text-center mb-16 reveal">
-          <h2 className="text-[42px] leading-tight font-normal tracking-[-0.03em] mb-6 font-[family-name:var(--font-geist-sans)]">
-            Funcionalidades completas
-            <br />para simplificar sua rotina de
-            <br />registro e controle de ponto
+          <h2 className="text-[42px] leading-tight font-normal tracking-[-0.03em] font-[family-name:var(--font-geist-sans)]">
+            Registro e controle de ponto eficiente<br />para uma rotina descomplicada
           </h2>
-          <p className="text-muted-foreground text-lg leading-relaxed font-[family-name:var(--font-geist-sans)]">
-            Do registro da marcação ao fechamento da folha, reunimos tudo que o RH precisa em um só lugar.
-          </p>
         </div>
 
-        {/* Row 1 — 3 cards */}
-        <div className="grid md:grid-cols-3 gap-4 mb-4">
-          {items.slice(0, 3).map((item) => {
+        {/* Row — 5 cards */}
+        <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
+          {items.map((item, index) => {
             const Icon = item.icon
             return (
-              <div key={item.number} className="reveal bg-white rounded-2xl p-8">
-                <p className="text-xs font-medium text-muted-foreground/40 mb-6 tracking-widest font-[family-name:var(--font-geist-sans)]">
-                  {item.number}
-                </p>
-                <Icon size={22} className="text-primary mb-5" aria-hidden="true" />
-                <h3 className="text-lg font-medium tracking-[-0.02em] mb-3 font-[family-name:var(--font-geist-sans)]">
-                  {item.title}
-                </h3>
-                <p className="text-sm text-muted-foreground leading-relaxed font-[family-name:var(--font-geist-sans)]">
-                  {item.description}
-                </p>
-              </div>
-            )
-          })}
-        </div>
-
-        {/* Row 2 — 2 cards centered */}
-        <div className="grid md:grid-cols-2 gap-4 md:w-2/3 mx-auto">
-          {items.slice(3).map((item) => {
-            const Icon = item.icon
-            return (
-              <div key={item.number} className="reveal bg-white rounded-2xl p-8">
-                <p className="text-xs font-medium text-muted-foreground/40 mb-6 tracking-widest font-[family-name:var(--font-geist-sans)]">
-                  {item.number}
-                </p>
-                <Icon size={22} className="text-primary mb-5" aria-hidden="true" />
-                <h3 className="text-lg font-medium tracking-[-0.02em] mb-3 font-[family-name:var(--font-geist-sans)]">
-                  {item.title}
-                </h3>
-                <p className="text-sm text-muted-foreground leading-relaxed font-[family-name:var(--font-geist-sans)]">
-                  {item.description}
-                </p>
+              <div key={item.number} className="reveal bg-[#f5f6f8] rounded-2xl p-7 flex flex-col" style={{ transitionDelay: `${index * 100}ms` }}>
+                <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-white mb-10 shrink-0" style={{ boxShadow: '2px 4px 8px rgba(0,0,0,0.06)' }}>
+                  <Icon size={22} className="text-primary" aria-hidden="true" />
+                </div>
+                <div>
+                  <h3 className="text-lg font-normal tracking-[-0.02em] mb-2 font-[family-name:var(--font-geist-sans)]">
+                    {item.title}
+                  </h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed font-inter tracking-[-0.01em]">
+                    {item.description}
+                  </p>
+                </div>
               </div>
             )
           })}
