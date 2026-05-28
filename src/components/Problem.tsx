@@ -168,9 +168,9 @@ export default function Problem() {
                 {tab.description}
               </p>
               <div className="grid grid-cols-2 gap-3 flex-1 mt-6">
-                {(i === 0 ? features : webFeatures).map(({ icon: Icon, label, ...rest }) => (
+                {(i === 0 ? features : webFeatures).map(({ icon: Icon, label }) => (
                   <div
-                    key={'key' in rest ? rest.key : label}
+                    key={label}
                     className="relative flex flex-col justify-between bg-white/15 backdrop-blur-md rounded-lg px-4 py-4 cursor-default overflow-hidden group"
                   >
                     <div className="absolute inset-0 bg-gradient-to-tr from-white/30 to-white/5 opacity-0 group-hover:opacity-100 transition-opacity duration-700 rounded-lg" />
